@@ -49,9 +49,9 @@ pkgs.stdenv.mkDerivation rec {
 		sed -i '27 i SECRET_KEY=_SECRET_' treo/settings.py
 		sed -i '27 i X_FRAME_OPTIONS = SAMEORIGIN' treo/settings.py
 
-		mv ./* $out/usr/share/stregsystemet
-		echo "#!/bin/bash
-		${env.interpreter} $out/usr/share/stregsystemet/manage.py" > $out/bin/stregsystemet
-		chmod +x $out/bin/stregsystemet
+		sed -i '1 i #!${env.interpreter}' manage.py
+
+		cp ./* $out/usr/share/stregsystemet -r
+		ln -s $out/usr/share/stregsystemet/manage.py $out/bin/stregsystemet
 	'';
 }

@@ -2,19 +2,31 @@
 
 pkgs.python3Packages.buildPythonPackage rec {
 	pname = "django-select2";
-	version = "8.1.2";
+	version = "7.11.1";
 	
-	src = pkgs.fetchFromGitHub {
-		owner = "codingjoe";
-		repo = "django-select2";
-		rev = "${version}";
-		sha256 = "sha256-0/W4TRkY10vMfSReOu/cZsDb5F0NeA+pxVw6z5YfdB0=";
+	src = pkgs.fetchPypi {
+		inherit pname version;
+		sha256 = "sha256-bFZ0nKXdEb6aeKCGEIaXMXDGBazicSbBCfPXIs6jwy4=";
 	};
+	doCheck = false;
+	propagatedBuildInputs = with pkgs.python3Packages; [
+		sphinx
+		pytest-runner
+		setuptools_scm
+		django
+		django-appconf
+		pytest
+		selenium
+	];
 	checkInputs = with pkgs.python3Packages; [
 		sphinx
 		pytest-runner	
 		setuptools_scm
 		setuptools
+		django
+		django-appconf
+		pytest
+		selenium
 	];
 }
 
