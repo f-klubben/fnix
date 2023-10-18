@@ -25,7 +25,7 @@ pkgs.stdenv.mkDerivation rec {
 	installPhase = ''
 		mkdir -p $out/bin
 		mkdir -p $out/usr/share/stregsystemet
-		sed -i '47 i 1=192.168.122.92' treo/settings.py
+		sed -i '27,28d;31,36d;39,44d;47,48d;51,55d' treo/settings.py
 		mv ./* $out/usr/share/stregsystemet
 		echo "${env.interpreter} $out/usr/share/stregsystemet/manage.py" > $out/bin/stregsystemet
 		chmod +x $out/bin/stregsystemet
