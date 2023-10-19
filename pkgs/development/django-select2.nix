@@ -1,12 +1,13 @@
 {pkgs ? import <nixpkgs> {}, lib ? pkgs.lib}:
 
 pkgs.python3Packages.buildPythonPackage rec {
-	pname = "django-select2";
-	version = "7.11.1";
-	
+	pname = "django_select2";
+	version = "8.1.2";
+	format = "pyproject";	
+
 	src = pkgs.fetchPypi {
 		inherit pname version;
-		sha256 = "sha256-bFZ0nKXdEb6aeKCGEIaXMXDGBazicSbBCfPXIs6jwy4=";
+		sha256 = "sha256-9EaF7hw5CQqt4B4+vCVnAvBWIPPHijwmhECtmmYHCHY=";
 	};
 	doCheck = false;
 	propagatedBuildInputs = with pkgs.python3Packages; [
@@ -17,6 +18,7 @@ pkgs.python3Packages.buildPythonPackage rec {
 		django-appconf
 		pytest
 		selenium
+		flit-scm
 	];
 	checkInputs = with pkgs.python3Packages; [
 		sphinx
