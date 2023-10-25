@@ -3,6 +3,7 @@
 	fetchFromGitHub ? pkgs.fetchFromGitHub,
 	lib ? pkgs.lib
 }:
+with lib;
 let 
 	django-select2 = pkgs: pkgs.callPackage ./development/django-select2.nix {};
 	env = (pkgs.python3.withPackages (pythonPackages: with pythonPackages; [
@@ -20,7 +21,7 @@ let
 in
 pkgs.stdenv.mkDerivation rec {
 	pname = "stregsystemet";
-	version = "2.4.4";
+	version = "2.4.5";
 	
 	src = pkgs.fetchFromGitHub {
 		owner = "f-klubben";
@@ -45,5 +46,8 @@ EOF
 
 		cp ./* $out/usr/share/stregsystemet -r
 		ln -s $out/usr/share/stregsystemet/manage.py $out/bin/stregsystemet
+		#mkdir -p /opt/stregsystemet
+		#touch /opt/stregsystemet/data.json
+		#touch /opt/stregsystemet/db.sqlite3
 	'';
 }
