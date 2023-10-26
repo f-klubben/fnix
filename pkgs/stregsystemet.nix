@@ -27,7 +27,7 @@ pkgs.stdenv.mkDerivation rec {
 		owner = "f-klubben";
 		repo = "stregsystemet";
 		rev = "v${version}";
-		sha256 = "sha256-CpwUOEPNBzxUrcBqwKxQK1oWMAA1N3G0PpRJ/iZGmOc=";
+		sha256 = "sha256-dd3TnyH7+iFH1rZFOZcWw+66Jh4S6DeU67cPTwJIJLY=";
 	};
 	
 	installPhase = ''
@@ -41,6 +41,7 @@ pkgs.stdenv.mkDerivation rec {
 [database]
 
 [hostnames]
+1=192.168.122.202
 EOF
 		sed -i '1 i #!${env.interpreter}' manage.py
 
