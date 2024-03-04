@@ -1,54 +1,43 @@
 {
-	pkgs ? import <nixpkgs> {},
-	fetchFromGitHub ? pkgs.fetchFromGitHub,
-	lib ? pkgs.lib
+    pkgs ? import <nixpkgs> { overlays = [
+    ];}
 }:
-with lib;
 let 
-	django-select2 = pkgs: pkgs.callPackage ./development/django-select2.nix {};
 	env = (pkgs.python3.withPackages (pythonPackages: with pythonPackages; [
-		(django-select2 pkgs)
-		django
-		pillow
-		coverage
-		pytz
-		regex
-		freezegun
-		django-debug-toolbar
-		requests
-		qrcode
-	]));
+		(pkgs.callPackage ./development/django-select2.nix {})
+        (pkgs.callPackage ./development/django.nix {})
+        pillow
+		(pkgs.callPackage ./development/coverage.nix {})
+		(pkgs.callPackage ./development/pytz.nix {})
+		(pkgs.callPackage ./development/regex.nix {})
+		(pkgs.callPackage ./development/freezegun.nix {})
+		(pkgs.callPackage ./development/django-debug-toolbar.nix {})
+	    (pkgs.callPackage ./development/requests.nix {})
+		(pkgs.callPackage ./development/qrcode.nix {})
+	])).override (args: {ignoreCollisions = true;});
 in
-pkgs.stdenv.mkDerivation rec {
+pkgs.stdenv.mkDerivation {
 	pname = "stregsystemet";
-	version = "2.4.5";
+    name = "stregsystemet";
 	
 	src = pkgs.fetchFromGitHub {
 		owner = "f-klubben";
 		repo = "stregsystemet";
-		rev = "v${version}";
-		sha256 = "sha256-dd3TnyH7+iFH1rZFOZcWw+66Jh4S6DeU67cPTwJIJLY=";
+		rev = "af0efd806ae743b0e8a9639376c4a31b81d61cd2";
+		sha256 = "sha256-0IwvGMyVd91h7bECTEqL2XydVewJZC+soctLnzTFASo=";
 	};
 	
 	installPhase = ''
 		mkdir -p $out/bin
-		mkdir -p $out/usr/share/stregsystemet
-		cat > local.cfg << EOF
-[general]
+		mkdir -p $out/share/stregsystemet
 
-[debug]
+        cp local.cfg.skel local.cfg
+        echo "${env.interpreter} $out/share/stregsystemet/manage.py \$@" > $out/bin/stregsystemet
+        sed -i '1 i #!${pkgs.bash}/bin/bash' $out/bin/stregsystemet
+        chmod +x $out/bin/stregsystemet
 
-[database]
+        sed -i '1d' manage.py
 
-[hostnames]
-1=192.168.122.202
-EOF
-		sed -i '1 i #!${env.interpreter}' manage.py
-
-		cp ./* $out/usr/share/stregsystemet -r
-		ln -s $out/usr/share/stregsystemet/manage.py $out/bin/stregsystemet
-		#mkdir -p /opt/stregsystemet
-		#touch /opt/stregsystemet/data.json
-		#touch /opt/stregsystemet/db.sqlite3
+		cp ./* $out/share/stregsystemet -r
 	'';
 }
