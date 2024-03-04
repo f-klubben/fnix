@@ -11,7 +11,7 @@
     in {
         nixosConfigurations.fklub = nixpkgs.lib.nixosSystem {
             inherit system;
-            modules = [ ./nixos/configuration.nix ];
+            modules = [ ./system/configuration.nix ];
         };
     };
 }
