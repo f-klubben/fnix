@@ -10,4 +10,11 @@ in {
         extraGroups = [ "wheel" ];
         initialPassword = "password";
     };
+    
+    users.users.mast3r = {
+        isNormalUser = true;
+        description = "Thomas";
+        extraGroups = [ "wheel" ];
+        initialPassword = "password";
+    };
 }
