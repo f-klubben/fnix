@@ -1,25 +1,19 @@
-{pkgs ? import <nixpkgs> {}, lib ? pkgs.lib}:
+{pkgs ? import <nixpkgs> {}}:
 
-pkgs.python3Packages.buildPythonPackage rec {
-	pname = "django-select2";
-    name = "django-select2";
+pkgs.python3Packages.buildPythonPackage {
+    pname = "Django-Select2";
     version = "5.11.1";
-	format = "pyproject";	
-
-	src = pkgs.fetchPypi {
-        pname="Django-Select2"; 
-        version="5.11.1"; 
-        sha256="sha256-Srw862EZFa/ggKC5jmIG05iN0d3pN+OtXpzxGXk66xk=";
+    src = pkgs.fetchurl {
+        url = "https://files.pythonhosted.org/packages/a9/67/4a511634562a3108261d6497bd2d6e40af957b9d3d75f30ec95cc68ccf0b/Django-Select2-5.11.1.tar.gz";
+        sha256 = "06gb79wikwcwbsny6dz9vp8qv66k0ri8xfd0h3hay58rc7mkrg2a";
     };
-	doCheck = false;
-	propagatedBuildInputs = with pkgs.python3Packages; [
-		sphinx
-		pytest-runner
-		setuptools_scm
-		django-appconf
-		pytest
-		selenium
-		flit-scm
-	];
+    format = "setuptools";
+    doCheck = false;
+    buildInputs = [];
+    checkInputs = [];
+    nativeBuildInputs = [];
+    propagatedBuildInputs = [
+        (pkgs.callPackage ./django-appconf.nix {})
+    ];
 }
 

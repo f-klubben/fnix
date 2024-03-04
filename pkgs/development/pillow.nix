@@ -1,32 +1,16 @@
-{
-    pkgs ? import <nixpkgs> {},
-    ...
-}:
-let py = pkgs.python3Packages;
+{pkgs ? import <nixpkgs> {}}:
 
-in pkgs.python3Packages.buildPythonPackage {
+pkgs.python3Packages.buildPythonPackage {
     pname = "Pillow";
-    name = "Pillow";
     version = "8.3.2";
-    format = "pyproject";
-    src = pkgs.fetchPypi {
-        pname = "Pillow";
-        version = "8.3.2";
-        sha256 = "sha256-3ePz7Y0AxyYxvBnL//itO2IVBipe7UAjga02X4LwwYw=";
+    src = pkgs.fetchurl {
+        url = "https://files.pythonhosted.org/packages/90/d4/a7c9b6c5d176654aa3dbccbfd0be4fd3a263355dc24122a5f1937bdc2689/Pillow-8.3.2.tar.gz";
+        sha256 = "1361y215ydmdh4il1vay5831aqivmpwgzjqrphqjdiq0ipnz7qyx";
     };
-    propagatedBuildInputs = with pkgs; [
-        py.defusedxml
-        py.olefile
-        freetype
-        libjpeg
-        zlib
-        libtiff
-        libwebp
-        libxcrypt
-        tcl
-        lcms2
-        tk
-        xorg.libX11
-        py.setuptools
-    ];
+    format = "setuptools";
+    doCheck = false;
+    buildInputs = [];
+    checkInputs = [];
+    nativeBuildInputs = [];
+    propagatedBuildInputs = [];
 }

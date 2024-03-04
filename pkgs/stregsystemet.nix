@@ -1,22 +1,19 @@
-{
-    pkgs ? import <nixpkgs> { overlays = [
-    ];}
-}:
-let 
-	env = (pkgs.python3.withPackages (pythonPackages: with pythonPackages; [
-		(pkgs.callPackage ./development/django-select2.nix {})
-        (pkgs.callPackage ./development/django.nix {})
+{pkgs ? import <nixpkgs> { }}:
+let
+    env = pkgs.python3.withPackages (py: with py; [
         pillow
-		(pkgs.callPackage ./development/coverage.nix {})
-		(pkgs.callPackage ./development/pytz.nix {})
-		(pkgs.callPackage ./development/regex.nix {})
-		(pkgs.callPackage ./development/freezegun.nix {})
-		(pkgs.callPackage ./development/django-debug-toolbar.nix {})
-	    (pkgs.callPackage ./development/requests.nix {})
-		(pkgs.callPackage ./development/qrcode.nix {})
-	])).override (args: {ignoreCollisions = true;});
-in
-pkgs.stdenv.mkDerivation {
+        (pkgs.callPackage ./development/django.nix {})
+        (pkgs.callPackage ./development/django-select2.nix {})
+        (pkgs.callPackage ./development/coverage.nix {})
+        (pkgs.callPackage ./development/pytz.nix {})
+        (pkgs.callPackage ./development/regex.nix {})
+        (pkgs.callPackage ./development/freezegun.nix {})
+        (pkgs.callPackage ./development/django-debug-toolbar.nix {})
+        (pkgs.callPackage ./development/requests.nix {})
+        (pkgs.callPackage ./development/qrcode.nix {})
+    ]);
+
+in pkgs.stdenv.mkDerivation {
 	pname = "stregsystemet";
     name = "stregsystemet";
 	
