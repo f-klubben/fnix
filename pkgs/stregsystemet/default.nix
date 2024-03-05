@@ -2,15 +2,15 @@
 let
     env = pkgs.python3.withPackages (py: with py; [
         pillow
-        (pkgs.callPackage ./development/django.nix {})
-        (pkgs.callPackage ./development/django-select2.nix {})
-        (pkgs.callPackage ./development/coverage.nix {})
-        (pkgs.callPackage ./development/pytz.nix {})
-        (pkgs.callPackage ./development/regex.nix {})
-        (pkgs.callPackage ./development/freezegun.nix {})
-        (pkgs.callPackage ./development/django-debug-toolbar.nix {})
-        (pkgs.callPackage ./development/requests.nix {})
-        (pkgs.callPackage ./development/qrcode.nix {})
+        (pkgs.callPackage ./dependencies/django.nix {})
+        (pkgs.callPackage ./dependencies/django-select2.nix {})
+        (pkgs.callPackage ./dependencies/coverage.nix {})
+        (pkgs.callPackage ./dependencies/pytz.nix {})
+        (pkgs.callPackage ./dependencies/regex.nix {})
+        (pkgs.callPackage ./dependencies/freezegun.nix {})
+        (pkgs.callPackage ./dependencies/django-debug-toolbar.nix {})
+        (pkgs.callPackage ./dependencies/requests.nix {})
+        (pkgs.callPackage ./dependencies/qrcode.nix {})
     ]);
 
 in pkgs.stdenv.mkDerivation {

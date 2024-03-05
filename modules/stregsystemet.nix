@@ -1,6 +1,6 @@
 {pkgs, ...}: 
 let
-    stregsystemet = pkgs.callPackage ../pkgs/stregsystemet.nix {};
+    stregsystemet = pkgs.callPackage ../pkgs/stregsystemet {};
 
 in {
     systemd.services.stregsystemet = {
