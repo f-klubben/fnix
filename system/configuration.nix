@@ -4,6 +4,7 @@
     imports = [
         ./programs.nix
         ./users.nix
+        ../modules
     ];
 
     networking.hostName = "fklub";
