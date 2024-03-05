@@ -1,4 +1,4 @@
-{pkgs ? import <nixpkgs> { }}:
+{pkgs ? import <nixpkgs> {}}:
 let
     env = pkgs.python3.withPackages (py: with py; [
         pillow

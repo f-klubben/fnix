@@ -1,4 +1,5 @@
-{pkgs ? import <nixpkgs> {},...}:
+{pkgs ? import <nixpkgs> {}}:
+
 pkgs.python3Packages.buildPythonPackage {
     pname = "Django";
     version = "2.2.28";
