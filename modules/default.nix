@@ -1,6 +1,7 @@
 {
     imports = [
         ./stregsystemet.nix
-        ./httpd.nix
+        ./nginx.nix
+        ./fikien.nix
     ];
 }
