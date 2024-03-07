@@ -4,6 +4,7 @@
     imports = [
         ./programs.nix
         ./users.nix
+        #./graphical.nix # Uncomment this file to test frontends in the virtual machine. DO NOT USE ON THE LIVE SYSTEM, ITS A RESOURCE HOG
         ../modules
     ];
 
