@@ -21,8 +21,11 @@ in {
             "routing.localhost" = {
                 listen = [{ port = 80; addr = "localhost"; }];
                 locations."/".index = "${pkgs.writeText "/var/fit/index.html" ''
-                    <a href="http://${portmap.domain}/">Fikien</a><br>
-                    <a href="http://stregsystem.${portmap.domain}/">Stregsystemet</a>
+                    <div style="text-align: center;">
+                        <h3>F-Klubben | Routing</h3>
+                        <a href="http://${portmap.domain}/">Fikien</a><br>
+                        <a href="http://stregsystem.${portmap.domain}/">Stregsystemet</a>
+                    </div>
                 ''}";
                 root = "/.";
             };
