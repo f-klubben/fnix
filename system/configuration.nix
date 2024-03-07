@@ -4,12 +4,14 @@
     imports = [
         ./programs.nix
         ./users.nix
-        #./graphical.nix # Uncomment this file to test frontends in the virtual machine. DO NOT USE ON THE LIVE SYSTEM, ITS A RESOURCE HOG
         ../modules
     ];
 
     networking.hostName = "fklub";
     networking.networkmanager.enable = true; # Manages network access
+    networking.firewall.allowedTCPPorts = [ 22 80 ];
+
+    services.sshd.enable = true;
 
     time.timeZone = "Europe/Copenhagen";
 
@@ -25,4 +27,10 @@
     # was first set up. See:
     # https://search.nixos.org/options?show=system.stateVersion
     system.stateVersion = "23.11"; # Read comment before changing!
+
+
+    virtualisation.vmVariant.virtualisation.forwardPorts = [
+        { from = "host"; host.port = 2222; guest.port = 22; }
+        { from = "host"; host.port = 8888; guest.port = 80; }
+    ];
 }
