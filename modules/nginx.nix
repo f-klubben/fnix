@@ -7,9 +7,11 @@ in {
     services.nginx = {
         enable = true;
         virtualHosts = {
+            # Fikien
             "${portmap.domain}" = {
                 listen = defaultListen;
             };
+            # Stregsystemet
             "stregsystem.${portmap.domain}" = {
                 listen = defaultListen;
 
