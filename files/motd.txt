@@ -1,0 +1,23 @@
+ _____     _  ___       _     _                
+|  ___|   | |/ / |_   _| |__ | |__   ___ _ __  
+| |_ _____| ' /| | | | | '_ \| '_ \ / _ \ '_ \ 
+|  _|_____| . \| | |_| | |_) | |_) |  __/ | | |
+|_|       |_|\_\_|\__,_|_.__/|_.__/ \___|_| |_|
+                                               
+   _  _   _____ ____  ___ _____ _____ ___ _____ 
+ _| || |_|  ___|  _ \|_ _|_   _|  ___|_ _|_   _|
+|_  ..  _| |_  | |_) || |  | | | |_   | |  | |  
+|_      _|  _| |  _ < | |  | | |  _|  | |  | |  
+  |_||_| |_|   |_| \_\___| |_| |_|   |___| |_| 
+                 
+F-klubben's Server
+OS:             NixOS-23.11
+
+Documentation:  file:///run/current-system/sw/share/doc/nixos/index.html
+
+Package search: https://search.nixos.org/packages
+                nix search nixpkgs <query>
+
+Options search: https://search.nixos.org/options
+
+Source:         https://github.com/f-klubben/fnix
