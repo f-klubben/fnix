@@ -11,4 +11,13 @@
   |_||_| |_|   |_| \_\___| |_| |_|   |___| |_| 
                  
 F-klubben's Server
-OS: NixOS-23.11
+OS:             NixOS-23.11
+
+Documentation:  file:///run/current-system/sw/share/doc/nixos/index.html
+
+Package search: https://search.nixos.org/packages
+                nix search nixpkgs <query>
+
+Options search: https://search.nixos.org/options
+
+Source:         https://github.com/f-klubben/fnix
