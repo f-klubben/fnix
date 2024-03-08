@@ -1,7 +1,12 @@
-{
+{lib, ...}: {
     imports = [
         ./stregsystemet.nix
-        ./nginx.nix
-        ./fikien.nix
     ];
+
+    options = {
+        domain = lib.mkOption {
+            type = lib.types.str;
+            default = "localhost";
+        };
+    };
 }

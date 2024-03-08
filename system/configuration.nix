@@ -1,9 +1,13 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
+
     imports = [
         ./programs.nix
         ./users.nix
+        ./nginx.nix
+        ./fikien.nix
+
         ../modules
     ];
 
@@ -28,9 +32,12 @@
     # https://search.nixos.org/options?show=system.stateVersion
     system.stateVersion = "23.11"; # Read comment before changing!
 
-
     virtualisation.vmVariant.virtualisation.forwardPorts = [
         { from = "host"; host.port = 2222; guest.port = 22; }
         { from = "host"; host.port = 8888; guest.port = 80; }
     ];
+
+    # #FRITFIT (custom shiz)
+    services.stregsystemet.enable = true;
+    #domain = "fklub.dk";
 }

@@ -1,13 +1,36 @@
-{pkgs, ...}: 
+{config, pkgs, lib, ...}: 
 let
     stregsystemet = pkgs.callPackage ../pkgs/stregsystemet {};
     portmap = import ./portmap.nix {};
+
+    cfg = config.services.stregsystemet;
+
 in {
-    systemd.services.stregsystemet = {
-        enable = true;
-        serviceConfig = {
-            ExecStart = "${stregsystemet}/bin/stregsystemet testserver ${stregsystemet}/share/stregsystemet/stregsystem/fixtures/testdata.json --addrport ${portmap.domain}:${portmap.ports.stregsystemet}";
+    options = {
+        services.stregsystemet.port = lib.mkOption {
+            type = lib.types.int;
+            default = 8080;
         };
-        wantedBy = [ "default.target" ];
+        services.stregsystemet.command = lib.mkOption {
+            type = lib.types.str;
+            default = "testserver";
+        };
+        services.stregsystemet.args = lib.mkOption {
+            type = lib.types.listOf lib.types.str;
+            default = [ "${stregsystemet}/share/stregsystemet/stregsystem/fixtures/testdata.json" ];
+        };
+        services.stregsystemet.enable = lib.mkOption {
+            type = lib.types.bool;
+            default = false;
+        };
+    };
+    config = {
+        systemd.services.stregsystemet = {
+            enable = cfg.enable;
+            serviceConfig = {
+                ExecStart = "${stregsystemet}/bin/stregsystemet ${cfg.command} ${lib.concatStringsSep " " cfg.args} --addrport ${config.domain}:${builtins.toString cfg.port}";
+            };
+            wantedBy = [ "default.target" ];
+        };
     };
 }

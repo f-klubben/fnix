@@ -1,7 +1,6 @@
-let 
-    portmap = import ./portmap.nix {};
+{config, ...}: let 
 in {
-    services.dokuwiki.sites."${portmap.domain}" = {
+    services.dokuwiki.sites."${config.domain}" = {
         enable = true;
         settings = {
             title = "test wiki";
