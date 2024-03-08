@@ -1,7 +1,6 @@
 {config, pkgs, lib, ...}: 
 let
     stregsystemet = pkgs.callPackage ../pkgs/stregsystemet {};
-    portmap = import ./portmap.nix {};
 
     cfg = config.services.stregsystemet;
 
