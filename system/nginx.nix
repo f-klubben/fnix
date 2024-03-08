@@ -4,11 +4,11 @@
         enable = true;
         virtualHosts = {
             # Fikien
-            "${config.domain}" = {
+            "${config.fklub.domain}" = {
                 listen = [{ addr = "localhost"; } { addr = "*"; }];
             };
             # Stregsystemet
-            "stregsystem.${config.domain}" = {
+            "stregsystem.${config.fklub.domain}" = {
                 listen = [{ addr = "localhost"; } { addr = "*"; }];
                 locations."/" = {
                     proxyPass = "http://localhost:${builtins.toString config.services.stregsystemet.port}/";
@@ -20,8 +20,8 @@
                 locations."/".index = "${pkgs.writeText "index.html" ''
                     <div style="text-align: center;">
                         <h3>F-Klubben | Routing</h3>
-                        <a href="http://${config.domain}/">Fikien</a><br>
-                        <a href="http://stregsystem.${config.domain}/">Stregsystemet</a>
+                        <a href="http://${config.fklub.domain}/">Fikien</a><br>
+                        <a href="http://stregsystem.${config.fklub.domain}/">Stregsystemet</a>
                     </div>
                 ''}";
                 root = "/.";

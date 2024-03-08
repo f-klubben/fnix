@@ -1,6 +1,6 @@
 {config, ...}: let 
 in {
-    services.dokuwiki.sites."${config.domain}" = {
+    services.dokuwiki.sites."${config.fklub.domain}" = {
         enable = true;
         settings = {
             title = "test wiki";

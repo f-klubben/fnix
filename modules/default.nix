@@ -4,7 +4,7 @@
     ];
 
     options = {
-        domain = lib.mkOption {
+        fklub.domain = lib.mkOption {
             type = lib.types.str;
             default = "localhost";
         };

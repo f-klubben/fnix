@@ -27,7 +27,7 @@ in {
         systemd.services.stregsystemet = {
             enable = cfg.enable;
             serviceConfig = {
-                ExecStart = "${stregsystemet}/bin/stregsystemet ${cfg.command} ${lib.concatStringsSep " " cfg.args} --addrport ${config.domain}:${builtins.toString cfg.port}";
+                ExecStart = "${stregsystemet}/bin/stregsystemet ${cfg.command} ${lib.concatStringsSep " " cfg.args} --addrport ${config.fklub.domain}:${builtins.toString cfg.port}";
             };
             wantedBy = [ "default.target" ];
         };
