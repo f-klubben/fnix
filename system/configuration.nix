@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
 
@@ -39,5 +39,5 @@
 
     # #FRITFIT (custom shiz)
     services.stregsystemet.enable = true;
-    #domain = "fklub.dk";
+    domain = "fklub.dk";
 }
