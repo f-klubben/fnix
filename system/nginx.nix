@@ -14,9 +14,10 @@
                     proxyPass = "http://localhost:${builtins.toString config.services.stregsystemet.port}/";
                 };
             };
-            # it will only run on localhost, its for debugging
+            # it will only run on localhost, its for debugging. Listens on "*" to
+            # be accessible outside of VM
             "routing.localhost" = {
-                listen = [{ addr = "localhost"; }];
+                listen = [{ addr = "localhost"; } { addr = "*"; }];
                 locations."/".index = "${pkgs.writeText "index.html" ''
                     <div style="text-align: center;">
                         <h3>F-Klubben | Routing</h3>
