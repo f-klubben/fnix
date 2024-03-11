@@ -1,0 +1,20 @@
+name: NixOS Package Building
+
+on:
+    push:
+        branches: [ main ]
+    pull_request: 
+        branches: [ main ]
+
+jobs:
+    build-stregsystemet:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4.1.1
+
+            - uses: cachix/install-nix-action@v25
+              with:
+                nix_path: nixpkgs=channel:nixos-23.11
+
+            - name: build-stregsystemet
+              run: nix build -f ./pkgs/stregsystemet
