@@ -4,6 +4,8 @@ let
     users = {};
     userDefaults = {};
 in {
+    users.motd = builtins.readFile ../files/motd.txt;
+
     users.users.tobias = {
         isNormalUser = true;
         description = "Tobias";
