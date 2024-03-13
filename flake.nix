@@ -9,9 +9,23 @@
         system = "x86_64-linux";
         pkgs = nixpkgs.legacyPackages.${system};
     in {
-        nixosConfigurations.fklub = nixpkgs.lib.nixosSystem {
+        nixosConfigurations.fklub-test = nixpkgs.lib.nixosSystem {
             inherit system;
-            modules = [ ./system/configuration.nix ];
+            modules = [
+                ./system/configuration.nix
+                {
+                    fklub.domain = "localhost";
+                }
+            ];
+        };
+        nixosConfigurations.fklub-prod = nixpkgs.lib.nixosSystem {
+            inherit system;
+            modules = [
+                ./system/configuration.nix
+                {
+                    fklub.domain = "fklub.dk";
+                }
+            ];
         };
     };
 }
