@@ -39,5 +39,4 @@
 
     # #FRITFIT (custom shiz)
     services.stregsystemet.enable = true;
-    fklub.domain = "fklub.dk";
 }
