@@ -1,4 +1,4 @@
-{pkgs ? import <nixpkgs> {}}:
+{pkgs}:
 let
     env = pkgs.python3.withPackages (py: with py; [
         pillow
@@ -16,14 +16,14 @@ let
 in pkgs.stdenv.mkDerivation {
 	pname = "stregsystemet";
     name = "stregsystemet";
-	
+
 	src = pkgs.fetchFromGitHub {
 		owner = "f-klubben";
 		repo = "stregsystemet";
 		rev = "af0efd806ae743b0e8a9639376c4a31b81d61cd2";
 		sha256 = "sha256-0IwvGMyVd91h7bECTEqL2XydVewJZC+soctLnzTFASo=";
 	};
-	
+
 	installPhase = ''
 		mkdir -p $out/bin
 		mkdir -p $out/share/stregsystemet

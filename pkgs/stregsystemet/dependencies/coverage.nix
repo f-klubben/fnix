@@ -1,4 +1,4 @@
-{pkgs ? import <nixpkgs> {}}: 
+{pkgs}:
 
 pkgs.python3Packages.buildPythonPackage {
     pname = "Coverage";
@@ -13,5 +13,5 @@ pkgs.python3Packages.buildPythonPackage {
     checkInputs = [];
     nativeBuildInputs = [];
     propagatedBuildInputs = [];
-  
+
 }

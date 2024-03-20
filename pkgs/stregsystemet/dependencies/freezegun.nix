@@ -1,4 +1,4 @@
-{pkgs ? import <nixpkgs> {}}:
+{pkgs}:
 
 pkgs.python3Packages.buildPythonPackage {
     pname = "freezegun";
