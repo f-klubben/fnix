@@ -12,7 +12,8 @@ jobs:
         steps:
             - uses: actions/checkout@v4.1.1
 
-            - uses: cachix/install-nix-action@v25
+            - uses: nixbuild/nix-quick-install-action@v27
+            - uses: nix-community/cache-nix-action@v5
 
             - name: build-stregsystemet
               run: nix build .#stregsystemet
