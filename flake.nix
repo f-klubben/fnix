@@ -27,5 +27,7 @@
                 }
             ];
         };
+
+        packages."${system}".stregsystemet = pkgs.callPackage ./pkgs/stregsystemet {};
     };
 }
