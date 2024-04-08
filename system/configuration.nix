@@ -7,13 +7,22 @@
         ./users.nix
         ./nginx.nix
         ./fikien.nix
+        ./mailserver.nix
 
         ../modules
     ];
 
     networking.hostName = "fklub";
     networking.networkmanager.enable = true; # Manages network access
-    networking.firewall.allowedTCPPorts = [ 22 80 ];
+    networking.firewall.allowedTCPPorts = [ 
+        22  #ssh
+        80  #http
+        25  #smtp
+        143 #imap
+        443 #https
+        587 #submission
+        
+    ];
 
     services.sshd.enable = true;
 
@@ -33,8 +42,10 @@
     system.stateVersion = "23.11"; # Read comment before changing!
 
     virtualisation.vmVariant.virtualisation.forwardPorts = [
-        { from = "host"; host.port = 2222; guest.port = 22; }
-        { from = "host"; host.port = 8888; guest.port = 80; }
+        { from = "host"; host.port = 2222; guest.port = 22;  }
+        { from = "host"; host.port = 80; guest.port = 80;  }
+        { from = "host"; host.port = 25;   guest.port = 25;  }
+        { from = "host"; host.port = 143;  guest.port = 143; }
     ];
 
     # #FRITFIT (custom shiz)
