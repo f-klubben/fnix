@@ -20,8 +20,8 @@ in pkgs.stdenv.mkDerivation {
 	src = pkgs.fetchFromGitHub {
 		owner = "f-klubben";
 		repo = "stregsystemet";
-		rev = "af0efd806ae743b0e8a9639376c4a31b81d61cd2";
-		sha256 = "sha256-0IwvGMyVd91h7bECTEqL2XydVewJZC+soctLnzTFASo=";
+		rev = "next";
+		sha256 = "sha256-X+3RKgoDd09IGBuMTLKHRSaW+82IE15JzO0lXOWsKH0=";
 	};
 
 	installPhase = ''
