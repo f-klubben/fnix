@@ -27,6 +27,17 @@
                 ''}";
                 root = "/.";
             };
+            "matrix.${config.fklub.domain}" = {
+                locations."/" = {
+                    proxyPass = "http://localhost:${builtins.toString config.fklub.matrix.port}";
+                    proxyWebsockets = true;
+                };
+                locations."/_matrix/" = {
+                    proxyPass = "http://localhost:${builtins.toString config.fklub.matrix.port}";
+                    proxyWebsockets = true;
+                };            
+            };
         };
+        
     };
 }

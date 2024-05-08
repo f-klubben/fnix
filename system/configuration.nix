@@ -7,6 +7,7 @@
         ./users.nix
         ./nginx.nix
         ./fikien.nix
+        ./matrix.nix
 
         ../modules
     ];
@@ -34,9 +35,10 @@
 
     virtualisation.vmVariant.virtualisation.forwardPorts = [
         { from = "host"; host.port = 2222; guest.port = 22; }
-        { from = "host"; host.port = 8888; guest.port = 80; }
+        { from = "host"; host.port = 80; guest.port = 80; }
     ];
 
     # #FRITFIT (custom shiz)
     services.stregsystemet.enable = true;
+    fklub.matrix.enable = true;
 }
